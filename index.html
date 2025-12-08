@@ -38,21 +38,6 @@
             text-align: center;
             font-size: 50px;
         }
-        #submitButton {
-            color: black;
-            font-weight: bold;
-
-            width: 100px;
-            height: 20px;
-            border-radius: 20px;
-
-            cursor: pointer;
-
-            transition: background-color ease 250ms;
-        }
-        #submitButton:hover {
-            background-color: darkgreen;
-        }
         span {
             font-weight: bolder;
         }
@@ -63,7 +48,6 @@
     <div id="box">
         <div id="container">
             <textarea id="textBox"></textarea>
-            <button id="submitButton">Calculate</button>
             <p>Number of Sentences: <span id="pSpan">0</span></p>
         </div>
     </div>
@@ -71,7 +55,6 @@
     <script>
         const textBox = document.getElementById("textBox");
         const pSpan = document.getElementById("pSpan");
-        const submitButton = document.getElementById("submitButton");
 
         // ---------------------------
         // Lightweight sentence counter
@@ -137,7 +120,6 @@
         }
 
         textBox.addEventListener("input", calc);
-        submitButton.addEventListener("click", calc);
     </script>
 </body>
 </html>
