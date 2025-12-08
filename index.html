@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate # of Sentences</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            margin: 0px;
+            padding: 0px;
+            color: white;
+        }
+        body {
+            background-color: #111;
+        }
+        #box {
+            height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container {
+            width: 700px;
+        }
+        #textBox {
+            width: 700px;
+            height: 500px;
+            resize: none;
+
+            border: 3px solid white;
+            border-radius: 5px;
+            background-color: #111;
+
+            padding: 5px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+        #submitButton {
+            color: black;
+            font-weight: bold;
+
+            width: 100px;
+            height: 20px;
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            transition: background-color ease 250ms;
+        }
+        #submitButton:hover {
+            background-color: darkgreen;
+        }
+        span {
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculate # of Sentences:</h1>
+    <div id="box">
+        <div id="container">
+            <textarea id="textBox"></textarea>
+            <button id="submitButton">Calculate</button>
+            <p>Number of Sentences: <span id="pSpan">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        const textBox = document.getElementById("textBox");
+        const pSpan = document.getElementById("pSpan");
+        const submitButton = document.getElementById("submitButton");
+
+        // ---------------------------
+        // Lightweight sentence counter
+        // ---------------------------
+        function countSentences(text) {
+            const abbrev = [
+                "mr.", "mrs.", "ms.", "dr.", "prof.", "sr.", "jr.",
+                "e.g.", "i.e.", "etc.", "vs.", "a.m.", "p.m.",
+                "u.s.", "u.k.", "u.n.", "c.i.a.", "f.b.i."
+            ];
+
+            let sentences = 0;
+            let i = 0;
+
+            while (i < text.length) {
+
+                // Skip ellipses "..."
+                if (text.substring(i, i + 3) === "...") {
+                    i += 3;
+                    continue;
+                }
+
+                if (text[i] === ".") {
+                    const before = text.slice(Math.max(0, i - 6), i + 1).toLowerCase();
+
+                    // Skip abbreviations
+                    if (abbrev.some(a => before.endsWith(a))) {
+                        i++;
+                        continue;
+                    }
+
+                    // Skip decimals like 3.14
+                    if (/\d\.\d/.test(text.substring(i - 1, i + 2))) {
+                        i++;
+                        continue;
+                    }
+
+                    // Skip domain names or file extensions like openai.com
+                    if (/[a-zA-Z0-9]\.[a-zA-Z]/.test(text.substring(i - 1, i + 2))) {
+                        i++;
+                        continue;
+                    }
+
+                    sentences++;
+                }
+
+                if (text[i] === "?" || text[i] === "!") {
+                    sentences++;
+                }
+
+                i++;
+            }
+
+            return sentences;
+        }
+
+        // ---------------------------
+        // Hook into your UI
+        // ---------------------------
+        function calc() {
+            const text = textBox.value;
+            pSpan.textContent = countSentences(text);
+        }
+
+        textBox.addEventListener("input", calc);
+        submitButton.addEventListener("click", calc);
+    </script>
+</body>
+</html>
