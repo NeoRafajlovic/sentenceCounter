@@ -1,56 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sentence Counter — Neo Rafajlovic</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Rafajlovic</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="trailer" aria-hidden="true"></div>
 
-  <div id="navbar" role="navigation" aria-label="Main navigation">
-    <div><a href="https://codepen.io/NeoRafajlovic" target="_blank" rel="noopener">CodePen</a></div>
-    <div><a href="https://neorafajlovic.github.io/" target="_blank" rel="noopener">Home</a></div>
-    <div><a href="https://github.com/NeoRafajlovic" target="_blank" rel="noopener">GitHub</a></div>
-  </div>
+<div id="trailer"></div>
 
-  <main id="main">
-    <div style="height: 170px;"></div>
+<div id="navbar">
+    <div><a href="https://codepen.io/NeoRafajlovic">CodePen</a></div>
+    <div><a href="https://neorafajlovic.github.io/">Home</a></div>
+    <div><a href="https://github.com/NeoRafajlovic">GitHub</a></div>
+</div>
 
-    <section id="counterCard" class="content" aria-labelledby="counterTitle">
-      <h2 id="counterTitle">Sentence Counter</h2>
+<div style="height: 200px;"></div>
 
-      <div class="controls-row">
-        <div class="stats">
-          <div>Sentences: <span id="sentCount">0</span></div>
-          <div>Words: <span id="wordCount">0</span></div>
-          <div>Paragraphs: <span id="paraCount">0</span></div>
-          <div>Read time: <span id="readTime">0 min</span></div>
-        </div>
+<div id="tools" class="content">
+    <h2>My Tools:</h2><br>
+    <ul>
+        <li><a href="https://neorafajlovic.github.io/sentenceCounter/">Sentence Counter</a></li>
+    </ul>
+</div>
 
-        <div class="buttons">
-          <button id="sampleBtn" type="button">Insert Sample</button>
-          <button id="clearBtn" type="button">Clear</button>
-          <button id="downloadBtn" type="button">Download</button>
-        </div>
-      </div>
-
-      <label for="textBox" class="visually-hidden">Enter text to analyze</label>
-      <textarea id="textBox" placeholder="Paste or type your text here..." aria-describedby="helpText"></textarea>
-      <p id="helpText" class="help">Also counts words & paragraphs. Hover the custom cursor to reveal it.</p>
-
-      <details class="notes">
-        <summary>Counting notes</summary>
-        <ul>
-          <li>Ignores common abbreviations (e.g., "Mr.", "etc."), decimals, ellipses, and domain names.</li>
-          <li>Tries to avoid over-counting initials like "J. K. Rowling".</li>
-          <li>Not perfect—natural language sentence splitting is tricky—but it's robust for most plain text.</li>
-        </ul>
-      </details>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
