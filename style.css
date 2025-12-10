@@ -1,154 +1,82 @@
-/* Global base */
-* { box-sizing: border-box; }
-* { font-family: sans-serif; margin: 0; padding: 0; color: white; }
-html { scroll-behavior: smooth; }
+/* GLOBAL */
+* {
+  font-family: sans-serif;
+  cursor: none;
+  margin: 0;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: rgb(20,20,20);
-  min-height: 100vh;
-  cursor: none; /* custom trailer cursor enabled */
-  -webkit-font-smoothing: antialiased;
+  background-color: rgb(20, 20, 20);
+  height: 100vh;
 }
 
-/* Invisible but accessible text for labels */
-.visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-}
-
-/* Trailer (custom cursor) */
+/* trailer cursor */
 #trailer {
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   background-color: white;
-  border-radius: 50%;
+  border-radius: 20px;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 0px;
+  top: 0px;
   z-index: 10000;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 400ms ease, transform 80ms linear;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px rgba(255,255,255,0.08), 0 0 24px rgba(255,255,255,0.02) inset;
+  transition: opacity 500ms ease;
 }
 
-/* Navbar */
+/* navbar */
 #navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 18px;
   top: 10px;
   left: 10px;
   height: 150px;
-  transition: height 300ms ease, background-color 300ms ease, opacity 300ms ease;
+  transition: height 500ms ease, background-color 500ms ease, opacity 500ms ease;
   position: fixed;
   width: calc(100vw - 24px);
   border: 3px solid white;
   border-radius: 10px;
-  background-color: rgb(20,20,20);
   opacity: 0.75;
-  z-index: 9999;
 }
+
 #navbar a {
   text-decoration: none;
-  font-size: 26px;
-  color: white;
-  padding: 8px 12px;
-}
-#navbar a:hover { color: #4ea1ff; }
-
-/* Main content layout */
-#main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
-  min-height: calc(100vh - 200px);
+  font-size: 30px;
 }
 
-/* The bordered card to match "tools" vibe */
+/* content blocks */
 .content {
-  width: 760px;
   border: 3px solid white;
   border-radius: 10px;
-  margin: 10px;
-  padding: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
+  margin: 20px;
+  padding: 20px;
 }
 
-/* Heading */
-.content h2 {
-  font-weight: 300;
-  font-size: 34px;
-  margin-bottom: 12px;
+h2 {
+  font-size: 30px;
+  font-weight: 100;
 }
 
-/* Controls row - stats + buttons */
-.controls-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.stats {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  font-size: 16px;
-}
-.stats div { font-weight: 400; }
-
-/* Buttons */
-.buttons { display:flex; gap:8px; }
-button {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer; /* native pointer for keyboard users still allowed */
-  font-size: 14px;
-  transition: background 200ms ease, color 200ms ease, transform 80ms ease;
-}
-button:hover { background: rgba(255,255,255,0.04); color: #cfe9ff; transform: translateY(-2px); }
-button:active { transform: translateY(0); }
-
-/* Textarea */
+/* sentence counter UI */
 #textBox {
   width: 100%;
-  height: 400px;
-  resize: vertical;
-  min-height: 180px;
-  padding: 12px;
-  margin-top: 8px;
-  background-color: rgba(0,0,0,0.25);
-  border: 2px solid rgba(255,255,255,0.12);
-  border-radius: 6px;
-  color: white;
-  font-size: 16px;
-  line-height: 1.45;
-  outline: none;
-}
-#textBox:focus {
-  border-color: #4ea1ff;
-  box-shadow: 0 2px 18px rgba(78,161,255,0.06);
+  height: 300px;
+  background-color: rgb(20,20,20);
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  font-size: 18px;
 }
 
-/* Help text & notes */
-.help { margin-top: 8px; font-size: 13px; color: rgba(255,255,255,0.65); }
-.notes { margin-top: 12px; color: rgba(255,255,255,0.85); }
-.notes summary { cursor: pointer; outline: none; }
-
-/* Responsive */
-@media (max-width: 820px) {
-  .content { width: calc(100vw - 28px); padding: 14px; }
-  #navbar a { font-size: 20px; }
-  #textBox { height: 260px; }
+#pSpan {
+  font-weight: bold;
+  font-size: 20px;
 }
