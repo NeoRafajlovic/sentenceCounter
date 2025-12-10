@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neo Rafajlovic</title>
+    <title>Sentence Counter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- trailer cursor -->
 <div id="trailer"></div>
 
+<!-- navbar -->
 <div id="navbar">
-    <div><a href="https://codepen.io/NeoRafajlovic">CodePen</a></div>
-    <div><a href="https://neorafajlovic.github.io/">Home</a></div>
-    <div><a href="https://github.com/NeoRafajlovic">GitHub</a></div>
+  <div>
+    <a href="https://codepen.io/NeoRafajlovic">CodePen</a>
+  </div>
+  <div>
+    <a href="https://neorafajlovic.github.io/">Home</a>
+  </div>
+  <div>
+    <a href="https://github.com/NeoRafajlovic">GitHub</a>
+  </div>
 </div>
 
+<!-- spacing -->
 <div style="height: 200px;"></div>
 
-<div id="tools" class="content">
-    <h2>My Tools:</h2><br>
-    <ul>
-        <li><a href="https://neorafajlovic.github.io/sentenceCounter/">Sentence Counter</a></li>
-    </ul>
+<!-- Sentence Counter Tool -->
+<div id="contentWrapper" class="content">
+    <h2>Sentence Counter</h2>
+    <textarea id="textBox" placeholder="Type here..."></textarea>
+    <p>Number of Sentences: <span id="pSpan">0</span></p>
 </div>
 
 <script src="main.js"></script>
