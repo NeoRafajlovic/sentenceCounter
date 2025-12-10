@@ -1,125 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculate # of Sentences</title>
-    <style>
-        * {
-            font-family: sans-serif;
-            margin: 0px;
-            padding: 0px;
-            color: white;
-        }
-        body {
-            background-color: #111;
-        }
-        #box {
-            height: calc(100vh - 60px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #container {
-            width: 700px;
-        }
-        #textBox {
-            width: 700px;
-            height: 500px;
-            resize: none;
-
-            border: 3px solid white;
-            border-radius: 5px;
-            background-color: #111;
-
-            padding: 5px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 50px;
-        }
-        span {
-            font-weight: bolder;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sentence Counter — Neo Rafajlovic</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Calculate # of Sentences:</h1>
-    <div id="box">
-        <div id="container">
-            <textarea id="textBox"></textarea>
-            <p>Number of Sentences: <span id="pSpan">0</span></p>
+  <div id="trailer" aria-hidden="true"></div>
+
+  <div id="navbar" role="navigation" aria-label="Main navigation">
+    <div><a href="https://codepen.io/NeoRafajlovic" target="_blank" rel="noopener">CodePen</a></div>
+    <div><a href="https://neorafajlovic.github.io/" target="_blank" rel="noopener">Home</a></div>
+    <div><a href="https://github.com/NeoRafajlovic" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+
+  <main id="main">
+    <div style="height: 170px;"></div>
+
+    <section id="counterCard" class="content" aria-labelledby="counterTitle">
+      <h2 id="counterTitle">Sentence Counter</h2>
+
+      <div class="controls-row">
+        <div class="stats">
+          <div>Sentences: <span id="sentCount">0</span></div>
+          <div>Words: <span id="wordCount">0</span></div>
+          <div>Paragraphs: <span id="paraCount">0</span></div>
+          <div>Read time: <span id="readTime">0 min</span></div>
         </div>
-    </div>
 
-    <script>
-        const textBox = document.getElementById("textBox");
-        const pSpan = document.getElementById("pSpan");
+        <div class="buttons">
+          <button id="sampleBtn" type="button">Insert Sample</button>
+          <button id="clearBtn" type="button">Clear</button>
+          <button id="downloadBtn" type="button">Download</button>
+        </div>
+      </div>
 
-        // ---------------------------
-        // Lightweight sentence counter
-        // ---------------------------
-        function countSentences(text) {
-            const abbrev = [
-                "mr.", "mrs.", "ms.", "dr.", "prof.", "sr.", "jr.",
-                "e.g.", "i.e.", "etc.", "vs.", "a.m.", "p.m.",
-                "u.s.", "u.k.", "u.n.", "c.i.a.", "f.b.i."
-            ];
+      <label for="textBox" class="visually-hidden">Enter text to analyze</label>
+      <textarea id="textBox" placeholder="Paste or type your text here..." aria-describedby="helpText"></textarea>
+      <p id="helpText" class="help">Also counts words & paragraphs. Hover the custom cursor to reveal it.</p>
 
-            let sentences = 0;
-            let i = 0;
+      <details class="notes">
+        <summary>Counting notes</summary>
+        <ul>
+          <li>Ignores common abbreviations (e.g., "Mr.", "etc."), decimals, ellipses, and domain names.</li>
+          <li>Tries to avoid over-counting initials like "J. K. Rowling".</li>
+          <li>Not perfect—natural language sentence splitting is tricky—but it's robust for most plain text.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
 
-            while (i < text.length) {
-
-                // Skip ellipses "..."
-                if (text.substring(i, i + 3) === "...") {
-                    i += 3;
-                    continue;
-                }
-
-                if (text[i] === ".") {
-                    const before = text.slice(Math.max(0, i - 6), i + 1).toLowerCase();
-
-                    // Skip abbreviations
-                    if (abbrev.some(a => before.endsWith(a))) {
-                        i++;
-                        continue;
-                    }
-
-                    // Skip decimals like 3.14
-                    if (/\d\.\d/.test(text.substring(i - 1, i + 2))) {
-                        i++;
-                        continue;
-                    }
-
-                    // Skip domain names or file extensions like openai.com
-                    if (/[a-zA-Z0-9]\.[a-zA-Z]/.test(text.substring(i - 1, i + 2))) {
-                        i++;
-                        continue;
-                    }
-
-                    sentences++;
-                }
-
-                if (text[i] === "?" || text[i] === "!") {
-                    sentences++;
-                }
-
-                i++;
-            }
-
-            return sentences;
-        }
-
-        // ---------------------------
-        // Hook into your UI
-        // ---------------------------
-        function calc() {
-            const text = textBox.value;
-            pSpan.textContent = countSentences(text);
-        }
-
-        textBox.addEventListener("input", calc);
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
